@@ -5,7 +5,7 @@ data class Condition(
 )
 
 data class Current(
-    val last_updated_epoch: Long,
+    val last_updated: String,
     val temp_c: Float,
     val condition: Condition,
 )

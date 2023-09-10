@@ -16,7 +16,7 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.findViewById(R.id.sourceLayout)
 
     fun bind(model: Weather) {
-        val date = LocalDate.ofEpochDay(model.current.last_updated_epoch)
+        val date = LocalDate.parse(model.current.last_updated.take(10))
         val dow = date.dayOfWeek.name
         sourceWeekDay.text = when(dow){
             "MONDAY" -> "Понедельник"
