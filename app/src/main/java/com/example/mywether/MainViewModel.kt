@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class MainViewModel : ViewModel() {
@@ -15,15 +16,21 @@ class MainViewModel : ViewModel() {
 
     fun getWeatherInfo(){
         CoroutineScope(Dispatchers.IO).launch {
-            val currentWeather = RetrofitBuilder.weatherService.getWeather(
-                RetrofitBuilder.apiKey,
-                "Rostov-on-Don",
-                "no"
-            )
-            Log.d("MyLog", currentWeather.toString())
-            resultLive.postValue(WeatherAdapter(listOf(currentWeather)))
-        }
+            try {
+                val currentWeatherResponse = RetrofitBuilder.weatherService.getWeather(
+                    RetrofitBuilder.apiKey,
+                    "Rostov-on-Don",
+                    "no"
+                )
+                if (currentWeatherResponse.isSuccessful){
+                    Log.d("MyLog", currentWeatherResponse.body().toString())
+                    resultLive.postValue(WeatherAdapter(listOf(currentWeatherResponse.body()!!)))
+                }
+            }catch (e: Exception){
+                Log.e("MyLog", e.message.toString())
+            }
 
+        }
     }
 
 

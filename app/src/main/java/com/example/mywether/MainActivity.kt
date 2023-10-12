@@ -2,6 +2,7 @@ package com.example.mywether
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.example.mywether.databinding.ActivityMainBinding
 
@@ -18,10 +19,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.resultLive.observe(this){
             binding.recyclerView.adapter = it
+            binding.loadPb.isVisible = false
         }
 
         viewModel.getWeatherInfo()
 
     }
-
 }
