@@ -20,11 +20,13 @@ class MainViewModel : ViewModel() {
                 val currentWeatherResponse = RetrofitBuilder.weatherService.getWeather(
                     RetrofitBuilder.apiKey,
                     "Rostov-on-Don",
-                    "no"
+                    "3",
+                    "no",
+                    "no",
                 )
                 if (currentWeatherResponse.isSuccessful){
-                    Log.d("MyLog", currentWeatherResponse.body().toString())
-                    resultLive.postValue(WeatherAdapter(listOf(currentWeatherResponse.body()!!)))
+                    Log.e("MyLog", currentWeatherResponse.body()?.forecast?.forecastday.toString())
+                    resultLive.postValue(WeatherAdapter(currentWeatherResponse.body()?.forecast?.forecastday!!))
                 }
             }catch (e: Exception){
                 Log.e("MyLog", e.message.toString())

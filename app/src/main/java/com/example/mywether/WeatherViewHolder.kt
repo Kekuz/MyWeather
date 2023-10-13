@@ -15,8 +15,8 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val sourceLayout: androidx.constraintlayout.widget.ConstraintLayout =
         itemView.findViewById(R.id.sourceLayout)
 
-    fun bind(model: Weather) {
-        val date = LocalDate.parse(model.current.last_updated.take(10))
+    fun bind(model:ForecastDay) {
+        val date = LocalDate.parse(model.date.take(10))
         val dow = date.dayOfWeek.name
         sourceWeekDay.text = when(dow){
             "MONDAY" -> "Понедельник"
@@ -29,12 +29,12 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             else -> "Error"
         }
 
-        if (model.current.temp_c > 0)
-            sourceTemperature.text = "+${model.current.temp_c} °C"
-        else sourceTemperature.text = "${model.current.temp_c} °C"
+        if (model.day.avgtemp_c > 0)
+            sourceTemperature.text = "+${model.day.avgtemp_c} °C"
+        else sourceTemperature.text = "${model.day.avgtemp_c} °C"
 
         sourceIcon.setBackgroundResource(
-            when (model.current.condition.text) {
+            when (model.day.condition.text) {
                 "Sunny", "Clear" -> R.drawable.baseline_wb_sunny_48
                 else -> R.drawable.baseline_wb_cloudy_48
             }
@@ -42,7 +42,7 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         sourceLayout.setBackgroundColor(
             itemView.context.getColor(
-                when (model.current.temp_c) {
+                when (model.day.avgtemp_c) {
                     in -60.0..-40.0 -> R.color.blue
                     in -39.0..0.0 -> R.color.white_blue
                     in 1.0..20.0 -> R.color.white_orange
