@@ -30,8 +30,8 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
         if (model.day.avgtemp_c > 0)
-            sourceTemperature.text = "+${model.day.avgtemp_c} °C"
-        else sourceTemperature.text = "${model.day.avgtemp_c} °C"
+            sourceTemperature.text = "+${model.day.avgtemp_c}°C"
+        else sourceTemperature.text = "${model.day.avgtemp_c}°C"
 
         sourceIcon.setBackgroundResource(
             when (model.day.condition.text) {
@@ -44,9 +44,9 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             itemView.context.getColor(
                 when (model.day.avgtemp_c) {
                     in -60.0..-40.0 -> R.color.blue
-                    in -39.0..0.0 -> R.color.white_blue
-                    in 1.0..20.0 -> R.color.white_orange
-                    in 21.0..40.0 -> R.color.orange
+                    in -40.1..0.0 -> R.color.white_blue
+                    in 0.1..20.0 -> R.color.white_orange
+                    in 20.1..40.0 -> R.color.orange
                     else -> R.color.black
                 }
             )

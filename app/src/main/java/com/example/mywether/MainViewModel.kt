@@ -27,12 +27,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     init {
         getLastKnownLocation()
     }
-    private fun getWeatherInfo(city:String) {
+    private fun getWeatherInfo(cords:String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val currentWeatherResponse = RetrofitBuilder.weatherService.getWeather(
                     RetrofitBuilder.apiKey,
-                    city,
+                    cords,
                     "3",
                     "no",
                     "no",
@@ -79,7 +79,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 if (it != null) {
                     //cityLive.value = getCityName(it.latitude, it.longitude)
                     Log.e("location", "${it.latitude} ${it.longitude}")
-                    getWeatherInfo(getCityName(it.latitude, it.longitude))
+                    getWeatherInfo("$it.latitude,$it.longitude")
                 }
 
             }
