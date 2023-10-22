@@ -15,9 +15,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.mywether.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        binding.recyclerView.adapter = WeatherAdapter(listOf())
+        //binding.recyclerView.adapter = WeatherAdapter(listOf())
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(this)
@@ -40,9 +43,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.resultLive.observe(this) {
-            binding.recyclerView.adapter = it
+            //binding.recyclerView.adapter = it
+            binding.currentTemperature.text = "${it.current.temp_c.roundToInt()}°C"
+            Glide.with(this)
+                .load("https:${it.current.condition.icon.replace("64","128")}")
+                //.placeholder(R.drawable.big_trackplaceholder)
+                //.centerCrop()
+                .into(binding.currentIcon)
             binding.loadPb.isVisible = false
+
+            viewModel.cityLive.observe(this){ city ->
+                binding.currentCity.text = city
+            }
         }
+
 
 
     }
