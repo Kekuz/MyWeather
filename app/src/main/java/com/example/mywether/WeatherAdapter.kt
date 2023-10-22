@@ -3,6 +3,7 @@ package com.example.mywether
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mywether.models.ForecastDay
 
 class WeatherAdapter(
     private val weathers: List<ForecastDay>

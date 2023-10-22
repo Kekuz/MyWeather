@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mywether.models.ForecastDay
 import java.time.LocalDate
 
 
@@ -15,7 +16,7 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val sourceLayout: androidx.constraintlayout.widget.ConstraintLayout =
         itemView.findViewById(R.id.sourceLayout)
 
-    fun bind(model:ForecastDay) {
+    fun bind(model: ForecastDay) {
         val date = LocalDate.parse(model.date.take(10))
         val dow = date.dayOfWeek.name
         sourceWeekDay.text = when(dow){
