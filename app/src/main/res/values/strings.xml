@@ -5,7 +5,7 @@
     <string name="wind_speed">Скорость ветра</string>
     <string name="humidity">Влажность</string>
     <string name="сloud_cover">Облачность</string>
-    <string name="precipitation">Осдаки</string>
+    <string name="precipitation">Осадки</string>
 
     <string name="powered_link">https://www.weatherapi.com/</string>
 </resources>

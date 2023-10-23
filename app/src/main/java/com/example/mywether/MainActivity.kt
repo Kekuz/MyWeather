@@ -72,13 +72,13 @@ class MainActivity : AppCompatActivity() {
                     currentCity.text = city
                 }
 
-                tomorrowTv.text = getDayOfWeek(it.forecast.forecastday[1].date)
+                /*tomorrowTv.text = getDayOfWeek(it.forecast.forecastday[1].date)
                 Glide.with(this@MainActivity)
                     .load("https:${it.forecast.forecastday[1].day.condition.icon.replace("64", "128")}")
                     //.placeholder(R.drawable.big_trackplaceholder)
                     //.centerCrop()
                     .into(tomorrowCondIv)
-                tomorrowTempTv.text = "${it.forecast.forecastday[1].day.mintemp_c}°C / ${it.forecast.forecastday[1].day.maxtemp_c}°C"
+                tomorrowTempTv.text = "${it.forecast.forecastday[1].day.mintemp_c.toInt()}°C / ${it.forecast.forecastday[1].day.maxtemp_c.toInt()}°C"
 
                 afterTomorrowTv.text = getDayOfWeek(it.forecast.forecastday[2].date)
                 Glide.with(this@MainActivity)
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                     //.placeholder(R.drawable.big_trackplaceholder)
                     //.centerCrop()
                     .into(afterTomorrowCondIv)
-                afterTomorrowTempTv.text = "${it.forecast.forecastday[2].day.mintemp_c}°C / ${it.forecast.forecastday[2].day.maxtemp_c}°C"
+                afterTomorrowTempTv.text = "${it.forecast.forecastday[2].day.mintemp_c.toInt()}°C / ${it.forecast.forecastday[2].day.maxtemp_c.toInt()}°C"*/
 
                 windKphTv.text = "${(it.current.wind_kph / 3.6).roundToInt()} м/с"
                 windArrowIv.animate().rotation(it.current.wind_degree.toFloat()) //тут анмация
@@ -102,6 +102,9 @@ class MainActivity : AppCompatActivity() {
                 loadPb.isVisible = false
             }
 
+        }
+        binding.currentFl.setOnClickListener {
+            Toast.makeText(this,"Тык!", Toast.LENGTH_LONG).show()
         }
 
 
