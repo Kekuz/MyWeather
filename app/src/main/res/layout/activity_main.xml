@@ -9,9 +9,9 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weather_cl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFBB56">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center_guideline"

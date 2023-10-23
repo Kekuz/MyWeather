@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -36,6 +37,13 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         //binding.recyclerView.adapter = WeatherAdapter(listOf())
 
+        binding.poweredByLinkTv.setOnClickListener{
+            Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(getString(R.string.powered_link))
+                startActivity(this)
+            }
+        }
+
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(this)
 
@@ -46,6 +54,13 @@ class MainActivity : AppCompatActivity() {
         viewModel.resultLive.observe(this) {
             with(binding) {
                 //recyclerView.adapter = it
+
+                if(it.current.is_day == 1){
+                    weatherCl.setBackgroundColor(getColor(R.color.day))
+                }else{
+                    weatherCl.setBackgroundColor(getColor(R.color.night))
+                }
+
                 currentTemperature.text = "${it.current.temp_c.roundToInt()}°C"
                 Glide.with(this@MainActivity)
                     .load("https:${it.current.condition.icon.replace("64", "128")}")
