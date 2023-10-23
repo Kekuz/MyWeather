@@ -20,6 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.mywether.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import java.time.LocalDate
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -43,23 +44,66 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.resultLive.observe(this) {
-            //binding.recyclerView.adapter = it
-            binding.currentTemperature.text = "${it.current.temp_c.roundToInt()}°C"
-            Glide.with(this)
-                .load("https:${it.current.condition.icon.replace("64","128")}")
-                //.placeholder(R.drawable.big_trackplaceholder)
-                //.centerCrop()
-                .into(binding.currentIcon)
-            binding.loadPb.isVisible = false
+            with(binding) {
+                //recyclerView.adapter = it
+                currentTemperature.text = "${it.current.temp_c.roundToInt()}°C"
+                Glide.with(this@MainActivity)
+                    .load("https:${it.current.condition.icon.replace("64", "128")}")
+                    //.placeholder(R.drawable.big_trackplaceholder)
+                    //.centerCrop()
+                    .into(currentIcon)
 
-            viewModel.cityLive.observe(this){ city ->
-                binding.currentCity.text = city
+                viewModel.cityLive.observe(this@MainActivity) { city ->
+                    currentCity.text = city
+                }
+
+                tomorrowTv.text = getDayOfWeek(it.forecast.forecastday[1].date)
+                Glide.with(this@MainActivity)
+                    .load("https:${it.forecast.forecastday[1].day.condition.icon.replace("64", "128")}")
+                    //.placeholder(R.drawable.big_trackplaceholder)
+                    //.centerCrop()
+                    .into(tomorrowCondIv)
+                tomorrowTempTv.text = "${it.forecast.forecastday[1].day.mintemp_c}°C / ${it.forecast.forecastday[1].day.maxtemp_c}°C"
+
+                afterTomorrowTv.text = getDayOfWeek(it.forecast.forecastday[2].date)
+                Glide.with(this@MainActivity)
+                    .load("https:${it.forecast.forecastday[2].day.condition.icon.replace("64", "128")}")
+                    //.placeholder(R.drawable.big_trackplaceholder)
+                    //.centerCrop()
+                    .into(afterTomorrowCondIv)
+                afterTomorrowTempTv.text = "${it.forecast.forecastday[2].day.mintemp_c}°C / ${it.forecast.forecastday[2].day.maxtemp_c}°C"
+
+                windKphTv.text = "${(it.current.wind_kph / 3.6).roundToInt()} м/с"
+                windArrowIv.animate().rotation(it.current.wind_degree.toFloat()) //тут анмация
+                //windArrowIv.rotation = it.current.wind_degree.toFloat() //тут анимации нет
+
+                precipMmTv.text = "${it.current.precip_mm.toInt()} мм"
+                //Капельки не нарисовали, ставить нечего...
+
+                humidityPercentTv.text = "${it.current.humidity}%"
+
+                cloudPercentTv.text = "${it.current.cloud}%"
+
+                loadPb.isVisible = false
             }
+
         }
 
 
-
     }
+
+    //этот ужасный ужас нужно отсюда убрать во viewmodel
+    private fun getDayOfWeek(string: String): String =
+        when (LocalDate.parse(string.take(10)).dayOfWeek.name) {
+            "MONDAY" -> "Пн"
+            "TUESDAY" -> "Вт"
+            "WEDNESDAY" -> "Ср"
+            "THURSDAY" -> "Чт"
+            "FRIDAY" -> "Пт"
+            "SATURDAY" -> "Сб"
+            "SUNDAY" -> "Вс"
+            else -> "-"
+        }
 
     private fun requestPermission() {
         ActivityCompat.requestPermissions(

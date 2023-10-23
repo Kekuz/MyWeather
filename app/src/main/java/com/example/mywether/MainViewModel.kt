@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.time.LocalDate
 import java.util.Locale
 
 
@@ -40,7 +41,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     "no",
                 )
                 if (weatherResponse.isSuccessful) {
-                    Log.e("MyLog", weatherResponse.body()?.forecast?.forecastday.toString())
+                    Log.e("MyLog", weatherResponse.body().toString())
                     resultLive.postValue(weatherResponse.body())
                 }
             } catch (e: Exception) {
@@ -49,6 +50,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         }
     }
+
 
     private fun getCityName(lat: Double, long: Double): String {
         var cityName: String?

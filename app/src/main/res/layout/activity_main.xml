@@ -196,6 +196,7 @@
 
         <ImageView
             style="@style/elevation"
+            android:id="@+id/wind_arrow_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/wind_degree_arrow"
@@ -221,7 +222,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/wind_speed"
+            android:text="@string/precipitation"
             app:layout_constraintStart_toStartOf="@+id/cloud_fl"
             app:layout_constraintTop_toTopOf="@+id/cloud_fl" />
 
@@ -268,6 +269,7 @@
 
         <TextView
             style="@style/small_text"
+            android:id="@+id/humidity_percent_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -287,6 +289,7 @@
             app:layout_constraintTop_toBottomOf="@id/textView3" />
 
         <TextView
+            android:id="@+id/cloud_percent_tv"
             style="@style/small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
