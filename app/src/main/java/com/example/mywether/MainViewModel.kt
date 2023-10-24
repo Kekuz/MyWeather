@@ -10,12 +10,12 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.mywether.models.Weather
+import com.example.mywether.models.translate.ConditionTranslateRu
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.time.LocalDate
 import java.util.Locale
 
 
@@ -26,6 +26,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val enabledPermissionLive = MutableLiveData<Boolean>()
     private val fusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(application)
+    val translate = ConditionTranslateRu
 
     init {
         getLastKnownLocation()
@@ -50,7 +51,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         }
     }
-
 
     private fun getCityName(lat: Double, long: Double): String {
         var cityName: String?

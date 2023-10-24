@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.view.isVisible
@@ -56,8 +57,10 @@ class MainActivity : AppCompatActivity() {
 
                 if(it.current.is_day == 1){
                     weatherCl.setBackgroundColor(getColor(R.color.day))
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }else{
                     weatherCl.setBackgroundColor(getColor(R.color.night))
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }
 
                 currentTemperature.text = "${it.current.temp_c.roundToInt()}°C"
@@ -81,11 +84,21 @@ class MainActivity : AppCompatActivity() {
                 cloudPercentTv.text = "${it.current.cloud}%"
 
                 loadPb.isVisible = false
+
+                var code = viewModel.translate.map[it.current.condition.code]
+
+                //Костыль для выбора ясно/солнечно
+                if(it.current.condition.code == 1000){
+                    code += it.current.is_day
+                }
+
+                currentFl.setOnClickListener {_->
+                    Toast.makeText(this@MainActivity,"$code", Toast.LENGTH_SHORT).show()
+                }
             }
 
-        }
-        binding.currentFl.setOnClickListener {
-            Toast.makeText(this,"Тык!", Toast.LENGTH_LONG).show()
+
+
         }
 
 

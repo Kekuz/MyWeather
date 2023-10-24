@@ -13,6 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!--<androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="current_fl,
+            current_icon,
+            current_temperature,
+            current_city,
+            forecast_rv,
+            wind_speed_fl,
+            wind_speed_info,
+               wind_kph_tv,
+            wind_arrow_iv,
+            cloud_fl,
+            precip_info,
+            precip_mm_tv,
+            water_drop_iv,
+            other_info_fl,
+            humidity_info,
+            humidity_percent_tv,
+            cloud_info,
+            cloud_percent_tv,
+            powered_by_link_tv" />-->
 
         <FrameLayout
             android:id="@+id/current_fl"
