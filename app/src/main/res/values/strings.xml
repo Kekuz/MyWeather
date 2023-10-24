@@ -8,4 +8,6 @@
     <string name="precipitation">Осадки</string>
 
     <string name="powered_link">https://www.weatherapi.com/</string>
+
+    <string name="today">Сегодня</string>
 </resources>

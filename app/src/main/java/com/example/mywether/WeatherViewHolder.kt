@@ -1,57 +1,51 @@
 package com.example.mywether
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mywether.models.ForecastDay
 import java.time.LocalDate
 
 
 class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val sourceWeekDay: TextView = itemView.findViewById(R.id.sourceWeekDay)
-    private val sourceIcon: ImageView = itemView.findViewById(R.id.sourceIcon)
-    private val sourceTemperature: TextView = itemView.findViewById(R.id.sourceTemperature)
-    private val sourceLayout: androidx.constraintlayout.widget.ConstraintLayout =
-        itemView.findViewById(R.id.sourceLayout)
+    private val weekdayTv: TextView = itemView.findViewById(R.id.weekday_tv)
+    private val forecastConditionIv: ImageView = itemView.findViewById(R.id.forecast_condition_iv)
+    private val forecastTemperatureTv: TextView =
+        itemView.findViewById(R.id.forecast_temperature_tv)
 
     fun bind(model: ForecastDay) {
         val date = LocalDate.parse(model.date.take(10))
         val dow = date.dayOfWeek.name
-        sourceWeekDay.text = when(dow){
-            "MONDAY" -> "Понедельник"
-            "TUESDAY" -> "Вторник"
-            "WEDNESDAY" -> "Среда"
-            "THURSDAY" -> "Четверг"
-            "FRIDAY" -> "Пятница"
-            "SATURDAY"-> "Суббота"
-            "SUNDAY" -> "Воскресенье"
-            else -> "Error"
+
+
+        if (model.date == LocalDate.now().toString()) {
+            weekdayTv.text = itemView.context.getString(R.string.today)
+        } else {
+            weekdayTv.text = when (dow) {
+                "MONDAY" -> "Пн"
+                "TUESDAY" -> "Вт"
+                "WEDNESDAY" -> "Ср"
+                "THURSDAY" -> "Чт"
+                "FRIDAY" -> "Пт"
+                "SATURDAY" -> "Сб"
+                "SUNDAY" -> "Вс"
+                else -> "-"
+            }
         }
 
-        if (model.day.avgtemp_c > 0)
-            sourceTemperature.text = "+${model.day.avgtemp_c}°C"
-        else sourceTemperature.text = "${model.day.avgtemp_c}°C"
 
-        sourceIcon.setBackgroundResource(
-            when (model.day.condition.text) {
-                "Sunny", "Clear" -> R.drawable.baseline_wb_sunny_48
-                else -> R.drawable.baseline_wb_cloudy_48
-            }
-        )
+        forecastTemperatureTv.text =
+            "${model.day.mintemp_c.toInt()}°C / ${model.day.maxtemp_c.toInt()}°C"
 
-        sourceLayout.setBackgroundColor(
-            itemView.context.getColor(
-                when (model.day.avgtemp_c) {
-                    in -60.0..-40.0 -> R.color.blue
-                    in -40.1..0.0 -> R.color.white_blue
-                    in 0.1..20.0 -> R.color.white_orange
-                    in 20.1..40.0 -> R.color.orange
-                    else -> R.color.black
-                }
-            )
-        )
+
+        Glide.with(itemView)
+            .load("https:${model.day.condition.icon.replace("64", "128")}")
+            .into(forecastConditionIv)
+
     }
 
 

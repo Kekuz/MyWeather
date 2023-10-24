@@ -1,47 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sourceLayout"
-    android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:background="@drawable/card_shape"
+    android:elevation="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="36dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
 
     <TextView
-        android:id="@+id/sourceWeekDay"
+        style="@style/medium_text"
+        android:id="@+id/weekday_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="24dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="WeekDay"
-        android:layout_marginStart="24dp"/>
+        tools:text="Пн" />
 
     <ImageView
-        android:id="@+id/sourceIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sourceTemperature"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/baseline_wb_sunny_48"
-        tools:text="WeekDay" />
+        style="@style/elevation"
+        android:id="@+id/forecast_condition_iv"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="@+id/weekday_tv"
+        app:layout_constraintStart_toStartOf="@+id/weekday_tv"
+        app:layout_constraintTop_toBottomOf="@id/weekday_tv"
+        tools:src="@drawable/example"/>
 
 
     <TextView
-        android:id="@+id/sourceTemperature"
+        style="@style/small_text"
+        android:id="@+id/forecast_temperature_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="-10"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/forecast_condition_iv"
+        tools:text="12℃ / 25℃" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

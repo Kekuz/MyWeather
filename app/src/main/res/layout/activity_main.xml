@@ -13,19 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--<androidx.constraintlayout.widget.Guideline
-            android:id="@+id/center_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />-->
-
-        <!-- <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/> -->
 
         <FrameLayout
             android:id="@+id/current_fl"
@@ -74,121 +61,19 @@
             app:layout_constraintTop_toBottomOf="@id/current_temperature"
             tools:text="Ростов-на-Дону" />
 
-        <!--<FrameLayout
-            android:id="@+id/tomorrow_fl"
-            style="@style/card"
-            android:layout_width="0dp"
-            android:layout_height="168dp"
-            android:layout_marginVertical="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="@id/center_guideline"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forecast_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/current_fl" />
-
-        <TextView
-            android:id="@+id/tomorrow_tv"
-            style="@style/medium_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@id/tomorrow_fl"
-            app:layout_constraintStart_toStartOf="@id/tomorrow_fl"
-            app:layout_constraintTop_toTopOf="@id/tomorrow_fl"
-            tools:text="Пт" />
-
-        <ImageView
-            android:id="@+id/tomorrow_cond_iv"
-            style="@style/elevation"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/tomorrow_temp_tv"
-            app:layout_constraintEnd_toEndOf="@id/tomorrow_fl"
-            app:layout_constraintStart_toStartOf="@id/tomorrow_fl"
-            app:layout_constraintTop_toBottomOf="@id/tomorrow_tv"
-            tools:src="@drawable/example" />
-
-        <TextView
-            android:id="@+id/tomorrow_temp_tv"
-            style="@style/small_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/tomorrow_fl"
-            app:layout_constraintEnd_toEndOf="@id/tomorrow_fl"
-            app:layout_constraintStart_toStartOf="@id/tomorrow_fl"
-            tools:text="12℃/25℃" />
-
-        <FrameLayout
-            android:id="@+id/after_tomorrow_fl"
-            style="@style/card"
-            android:layout_width="0dp"
-            android:layout_height="168dp"
-            android:layout_marginVertical="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/center_guideline"
-            app:layout_constraintTop_toBottomOf="@id/current_fl" />
-
-        <TextView
-            android:id="@+id/after_tomorrow_tv"
-            style="@style/medium_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@id/after_tomorrow_fl"
-            app:layout_constraintStart_toStartOf="@id/after_tomorrow_fl"
-            app:layout_constraintTop_toTopOf="@id/after_tomorrow_fl"
-            tools:text="Сб" />
-
-        <ImageView
-            android:id="@+id/after_tomorrow_cond_iv"
-            style="@style/elevation"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/after_tomorrow_temp_tv"
-            app:layout_constraintEnd_toEndOf="@id/after_tomorrow_fl"
-            app:layout_constraintStart_toStartOf="@id/after_tomorrow_fl"
-            app:layout_constraintTop_toBottomOf="@id/after_tomorrow_tv"
-            tools:src="@drawable/example" />
-
-        <TextView
-            android:id="@+id/after_tomorrow_temp_tv"
-            style="@style/small_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/after_tomorrow_fl"
-            app:layout_constraintEnd_toEndOf="@id/after_tomorrow_fl"
-            app:layout_constraintStart_toStartOf="@id/after_tomorrow_fl"
-            tools:text="12℃/25℃" />-->
-
-        <FrameLayout
-            android:id="@+id/empty"
-            style="@style/card"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/empty_tv"
-            app:layout_constraintEnd_toEndOf="@+id/empty_tv"
-            app:layout_constraintStart_toStartOf="@+id/empty_tv"
-            app:layout_constraintTop_toTopOf="@+id/empty_tv" />
-
-        <TextView
-            android:id="@+id/empty_tv"
-            style="@style/small_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:paddingVertical="16dp"
-            android:text="Старый прогноз устал, а новый в разработке("
-            android:textColor="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/current_city" />
+            tools:listitem="@layout/weather_view"
+            app:layout_constraintTop_toBottomOf="@id/current_city"/>
 
 
         <FrameLayout
@@ -206,13 +91,13 @@
             style="@style/small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:paddingHorizontal="24dp"
             android:paddingTop="16dp"
             android:text="@string/wind_speed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/empty_tv" />
+            app:layout_constraintTop_toBottomOf="@id/forecast_rv" />
 
         <TextView
             android:id="@+id/wind_kph_tv"
