@@ -1,41 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="elevation">
-        <item name="android:elevation">@dimen/elevation</item>
-    </style>
-
-    <style name="card" parent="elevation">
-        <item name="android:background">@drawable/card_shape</item>
-    </style>
-
     <style name="title_text" parent="elevation">
         <item name="android:textSize">70sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="large_text" parent="elevation">
         <item name="android:textSize">56sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="medium_text" parent="elevation">
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="small_text" parent="elevation">
         <item name="android:textSize">21sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="powered_by_link_text" parent="elevation">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/gray</item>
     </style>
 </resources>
