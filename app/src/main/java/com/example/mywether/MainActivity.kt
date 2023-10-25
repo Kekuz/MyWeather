@@ -60,7 +60,14 @@ class MainActivity : AppCompatActivity() {
             with(binding) {
                 forecastRv.adapter = WeatherAdapter(it.forecast.forecastday)
 
-                weatherCl.setBackgroundColor(getColor(weatherConditionColor(it.current.condition.code, it.current.is_day)))
+                weatherCl.setBackgroundColor(
+                    getColor(
+                        weatherConditionColor(
+                            it.current.condition.code,
+                            it.current.is_day
+                        )
+                    )
+                )
 
                 if (it.current.is_day == 1) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -102,11 +109,11 @@ class MainActivity : AppCompatActivity() {
                 loadPb.isVisible = false
 
                 currentFl.setOnClickListener { _ ->
-                    Log.e("Location",it.current.condition.text)
-                    //Toast.makeText(this@MainActivity, "it.location.country", Toast.LENGTH_SHORT).show()
+                    Log.e("Location", it.current.condition.text)
+                    Toast.makeText(this@MainActivity, it.current.condition.text, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
-
 
         }
 
@@ -115,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(!onFirstStart) {
+        if (!onFirstStart) {
             viewModel.getLastKnownLocation()
             onFirstStart = false
         }
