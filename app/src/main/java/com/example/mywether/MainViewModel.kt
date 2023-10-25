@@ -10,7 +10,6 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.mywether.models.Weather
-import com.example.mywether.models.translate.ConditionTranslateRu
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +25,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val enabledPermissionLive = MutableLiveData<Boolean>()
     private val fusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(application)
-    val translate = ConditionTranslateRu
 
     init {
         getLastKnownLocation()
@@ -40,6 +38,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     "3",
                     "no",
                     "no",
+                    "ru"
                 )
                 if (weatherResponse.isSuccessful) {
                     Log.e("MyLog", weatherResponse.body().toString())
@@ -81,10 +80,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener {
                 if (it != null) {
-                    //cityLive.value = getCityName(it.latitude, it.longitude)
                     Log.e("location", "${it.latitude} ${it.longitude}")
                     cityLive.value = getCityName(it.latitude, it.longitude)
-                    getWeatherInfo("$it.latitude,$it.longitude")
+                    getWeatherInfo("${it.latitude},${it.longitude}")
                 }
 
             }

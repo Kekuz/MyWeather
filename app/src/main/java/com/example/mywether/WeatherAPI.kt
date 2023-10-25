@@ -13,5 +13,6 @@ interface WeatherAPI {
         @Query("days") days: String,
         @Query("aqi") aqi: String,
         @Query("alerts") alerts: String,
+        @Query("lang") lang: String,
     ): Response<Weather>
 }

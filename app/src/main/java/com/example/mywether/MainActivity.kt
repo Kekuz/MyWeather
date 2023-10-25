@@ -23,18 +23,21 @@ import com.example.mywether.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.time.LocalDate
+import kotlin.math.log
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
+    private var onFirstStart = true
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         binding.forecastRv.adapter = LoadWeatherAdapter.weatherAdapter
 
@@ -98,15 +101,9 @@ class MainActivity : AppCompatActivity() {
 
                 loadPb.isVisible = false
 
-                var code = viewModel.translate.map[it.current.condition.code]
-
-                //Костыль для выбора ясно/солнечно
-                if (it.current.condition.code == 1000) {
-                    code += it.current.is_day
-                }
-
                 currentFl.setOnClickListener { _ ->
-                    Toast.makeText(this@MainActivity, "$code", Toast.LENGTH_SHORT).show()
+                    Log.e("Location",it.current.condition.text)
+                    //Toast.makeText(this@MainActivity, "it.location.country", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -118,7 +115,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getLastKnownLocation()
+        if(!onFirstStart) {
+            viewModel.getLastKnownLocation()
+            onFirstStart = false
+        }
     }
 
     private fun windBackgroundColor(speed: Int): Int =
