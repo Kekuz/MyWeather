@@ -116,6 +116,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getLastKnownLocation()
+    }
+
     private fun windBackgroundColor(speed: Int): Int =
         when (speed) {
             0 -> R.color.calm
