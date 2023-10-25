@@ -10,4 +10,6 @@
     <string name="powered_link">https://www.weatherapi.com/</string>
 
     <string name="today">Сегодня</string>
+    <string name="load_current_temp">-℃</string>
+    <string name="load">-</string>
 </resources>

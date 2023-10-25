@@ -18,33 +18,40 @@ class WeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.findViewById(R.id.forecast_temperature_tv)
 
     fun bind(model: ForecastDay) {
-        val date = LocalDate.parse(model.date.take(10))
-        val dow = date.dayOfWeek.name
+        if (model.date != "-") {
+            val date = LocalDate.parse(model.date.take(10))
+            val dow = date.dayOfWeek.name
 
 
-        if (model.date == LocalDate.now().toString()) {
-            weekdayTv.text = itemView.context.getString(R.string.today)
-        } else {
-            weekdayTv.text = when (dow) {
-                "MONDAY" -> "Пн"
-                "TUESDAY" -> "Вт"
-                "WEDNESDAY" -> "Ср"
-                "THURSDAY" -> "Чт"
-                "FRIDAY" -> "Пт"
-                "SATURDAY" -> "Сб"
-                "SUNDAY" -> "Вс"
-                else -> "-"
+            if (model.date == LocalDate.now().toString()) {
+                weekdayTv.text = itemView.context.getString(R.string.today)
+            } else {
+                weekdayTv.text = when (dow) {
+                    "MONDAY" -> "Пн"
+                    "TUESDAY" -> "Вт"
+                    "WEDNESDAY" -> "Ср"
+                    "THURSDAY" -> "Чт"
+                    "FRIDAY" -> "Пт"
+                    "SATURDAY" -> "Сб"
+                    "SUNDAY" -> "Вс"
+                    else -> "-"
+                }
             }
+
+
+            forecastTemperatureTv.text =
+                "${model.day.mintemp_c.toInt()}°C / ${model.day.maxtemp_c.toInt()}°C"
+
+
+            Glide.with(itemView)
+                .load("https:${model.day.condition.icon.replace("64", "128")}")
+                .into(forecastConditionIv)
+        }
+        else{
+            forecastTemperatureTv.text =
+                "    -°C / -°C    "
         }
 
-
-        forecastTemperatureTv.text =
-            "${model.day.mintemp_c.toInt()}°C / ${model.day.maxtemp_c.toInt()}°C"
-
-
-        Glide.with(itemView)
-            .load("https:${model.day.condition.icon.replace("64", "128")}")
-            .into(forecastConditionIv)
 
     }
 

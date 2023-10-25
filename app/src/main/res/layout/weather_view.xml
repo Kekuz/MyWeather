@@ -20,6 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/load"
         tools:text="Пн" />
 
     <ImageView
@@ -30,10 +31,12 @@
         app:layout_constraintEnd_toEndOf="@+id/weekday_tv"
         app:layout_constraintStart_toStartOf="@+id/weekday_tv"
         app:layout_constraintTop_toBottomOf="@id/weekday_tv"
+        android:src="@color/trans"
         tools:src="@drawable/example" />
 
 
     <TextView
+        android:text="@string/load"
         android:id="@+id/forecast_temperature_tv"
         style="@style/small_text"
         android:layout_width="wrap_content"

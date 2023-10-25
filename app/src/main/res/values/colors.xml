@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#2D2F3D</color>
+    <color name="real_black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#81000000</color>
+    <color name="trans">#00000000 </color>
 
-    <color name="day">#FFBB56</color>
-    <color name="night">#0073DB</color>
+    <color name="day">#FCCB5B</color>
+    <color name="night">#096DC8</color>
+    <color name="snow_day">#E7E7E7</color>
+    <color name="snow_night">#BABABA</color>
+    <color name="cloudy_day">#D6D6D6</color>
+    <color name="cloudy_night">#7D7E7E</color>
+    <color name="fog_day">#C3C3C3</color>
+    <color name="fog_night">#A7A7A7</color>
+    <color name="rain_day">#7D7D7D</color>
+    <color name="rain_night">#5D5D5D</color>
 
+    <color name="calm">#FAF8EA</color>
+    <color name="weak">#F4EEC3</color>
+    <color name="moderate">#E7D875</color>
+    <color name="strong">#D99400</color>
+    <color name="storm">#DF5B00</color>
+    <color name="hurricane">#E62A00</color>
 
-    <color name="orange">#FF9329</color>
-    <color name="white_orange">#fff1e0</color>
-    <color name="white_blue">#c9e2ff</color>
-    <color name="blue">#409cff</color>
 
 </resources>

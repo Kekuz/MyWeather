@@ -56,6 +56,7 @@
             android:layout_height="150dp"
             android:layout_marginTop="16dp"
             android:paddingTop="16dp"
+            android:src="@color/trans"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -67,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-16dp"
+            android:text="@string/load_current_temp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_icon"
@@ -79,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-8dp"
             android:paddingBottom="16dp"
+            android:text="@string/load"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/current_temperature"
@@ -127,6 +130,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="24dp"
             android:paddingBottom="8dp"
+            android:text="@string/load"
             app:layout_constraintStart_toStartOf="@+id/wind_speed_info"
             app:layout_constraintTop_toBottomOf="@+id/wind_speed_info"
             tools:text="25 м/с" />
@@ -173,6 +177,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="24dp"
             android:paddingBottom="8dp"
+            android:text="@string/load"
             app:layout_constraintStart_toStartOf="@+id/precip_info"
             app:layout_constraintTop_toBottomOf="@+id/precip_info"
             tools:text="10 мм" />
@@ -184,10 +189,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:paddingHorizontal="32dp"
-            android:src="@drawable/water_drop"
             app:layout_constraintBottom_toBottomOf="@+id/precip_mm_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/precip_info" />
+            app:layout_constraintTop_toTopOf="@+id/precip_info"
+            tools:src="@drawable/rain_icon_3" />
 
         <FrameLayout
             android:id="@+id/other_info_fl"
@@ -220,6 +225,7 @@
             android:layout_marginEnd="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="24dp"
+            android:text="@string/load"
             app:layout_constraintBottom_toBottomOf="@+id/humidity_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/humidity_info"
@@ -246,6 +252,7 @@
             android:layout_marginEnd="16dp"
             android:paddingEnd="24dp"
             android:paddingBottom="16dp"
+            android:text="@string/load"
             app:layout_constraintBottom_toBottomOf="@+id/cloud_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/cloud_info"
@@ -266,10 +273,12 @@
 
 
         <ProgressBar
+            android:padding="3dp"
             android:id="@+id/load_pb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:elevation="@dimen/elevation"
+            android:background="@drawable/card_shape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
